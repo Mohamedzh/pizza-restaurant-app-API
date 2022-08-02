@@ -4,7 +4,7 @@ import { Product } from '../Entities/product'
 const router = Router()
 //Get all products
 router.get('/', async (req, res) => {
-    const products = await Product.find()
+    const products = await Product.find({relations:{category:true}})
     res.json({ products })
 })
 //Post a new product

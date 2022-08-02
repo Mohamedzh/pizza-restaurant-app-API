@@ -21,18 +21,17 @@ export class Product extends BaseEntity {
 
     @Column()
     description: string;
-    
+
     @Column()
     imageUrl: string;
 
-    @ManyToOne(()=>Category, category=>category.products, {nullable: false})
+    @ManyToOne(() => Category, category => category.products, { nullable: false })
     category: Category;
 
-    @ManyToMany(()=> Order)
-    @JoinTable()
-    orders: Order[];
+    // @ManyToMany(() => Order)
+    // @JoinTable()
+    // orders: Order[];
 
-    @ManyToMany(()=>OrderLine)
-    @JoinTable()
+    @ManyToOne(() => OrderLine, orderline=>orderline.product)
     orderlines: OrderLine[];
 }

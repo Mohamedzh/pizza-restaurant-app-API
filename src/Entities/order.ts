@@ -8,10 +8,10 @@ export class Order extends BaseEntity {
     id: number;
 
     @Column()
-    firstName: string;
+    name: string;
 
     @Column()
-    lastName: string;
+    mobile: string;
 
     @Column()
     address: string;
@@ -32,13 +32,10 @@ export class Order extends BaseEntity {
     })
     updatedAt: Date;
 
-    @ManyToMany(()=>Product)
-    @JoinTable()
-    products: Product[];
-
-    @ManyToMany(()=>OrderLine)
+    @OneToMany(()=>OrderLine, orderline=>orderline.order)
     orderlines: OrderLine[];
-    // @Column()
-    // completed:boolean;
+
+    @Column({default: false})
+    completed:boolean;
 
 }

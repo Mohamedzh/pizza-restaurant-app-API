@@ -8,6 +8,12 @@ export class OrderLine extends BaseEntity {
     id: number;
 
     @Column()
+    orderId:number;
+
+    @Column()
+    productId:number;
+
+    @Column()
     quantity: number;
 
     @CreateDateColumn({type: "timestamptz"})
@@ -19,11 +25,11 @@ export class OrderLine extends BaseEntity {
     })
     updatedAt: Date;
 
-    @ManyToMany(()=>Product)
-    products: Product[]
+    @ManyToOne(()=>Product, product=>product.orderlines)
+    product: Product
 
-    @ManyToMany(()=>Order)
-    orders: Order[]
+    @ManyToOne(()=>Order, order=>order.orderlines)
+    order: Order
     // @Column()
     // completed:boolean;
 
