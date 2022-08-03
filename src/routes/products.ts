@@ -4,7 +4,7 @@ import { Product } from '../Entities/product'
 const router = Router()
 //Get all products
 router.get('/', async (req, res) => {
-    const products = await Product.find({relations:{category:true}})
+    const products = await Product.find({ relations: { category: true } })
     res.json({ products })
 })
 //Post a new product
@@ -29,21 +29,21 @@ router.post('/', async (req, res) => {
 router.post('/:id', async (req, res) => {
     try {
         const currentId = +req.params.id
-    const item = await Product.findOne({ where: { id: currentId } })
-    const { popular } = req.body;
-    const updatedItem = await Product.update(item!.id, { popular: popular })
-    res.json({updatedItem})
+        const item = await Product.findOne({ where: { id: currentId } })
+        const { popular } = req.body;
+        const updatedItem = await Product.update(item!.id, { popular: popular })
+        res.status(200).json({ updatedItem })
     } catch (error) {
         res.status(500).json({ error })
     }
-    
+
 })
 //Remove a product
 router.delete('/:id', async (req, res) => {
     try {
         const currentId = +(req.params.id)
-    const item = await Product.findOne({ where: { id: currentId } })
-     await Product.remove(item!)
+        const item = await Product.findOne({ where: { id: currentId } })
+        await Product.remove(item!)
     } catch (error) {
         res.status(500).json({ error })
     }

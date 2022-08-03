@@ -25,12 +25,10 @@ export class OrderLine extends BaseEntity {
     })
     updatedAt: Date;
 
-    @ManyToOne(()=>Product, product=>product.orderlines)
+    @ManyToOne(()=>Product, product=>product.orderlines )
     product: Product
 
     @ManyToOne(()=>Order, order=>order.orderlines)
     order: Order
-    // @Column()
-    // completed:boolean;
 
 }
