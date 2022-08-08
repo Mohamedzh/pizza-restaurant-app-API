@@ -7,11 +7,11 @@ export class OrderLine extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    orderId:number;
+    // @Column()
+    // orderId:number;
 
-    @Column()
-    productId:number;
+    // @Column()
+    // productId:number;
 
     @Column()
     quantity: number;

@@ -6,29 +6,33 @@ import { OrderLine } from '../Entities/orderLine'
 
 const router = Router()
 
+
+interface productId {
+    id: number,
+    quantity: number
+}
+
+
 //Post a new order
 router.post('/', async (req, res) => {
     try {
         const { name, mobile, address, city, productIds } = req.body
-        const products = await Product.find({ where: { id: In(Object.keys(productIds) || []) } })
+        const products = await Product.find({ where: { id: In(productIds.map((product: productId)=>product.id) || []) } })
         console.log(products)
         const newOrder = Order.create({
             name, mobile, address, city
         })
         // console.log(newOrder)
-        await Order.save(newOrder)
-        const orderId = newOrder.id
+        await newOrder.save()
+        const order = newOrder
         for (let i = 0; i < products.length; i++) {
-            let productId = +Object.keys(productIds)[i]
-            console.log(productId)
-            // let product = await Product.findOne({where: {id: productId}})
-            let quantity = productIds[productId]
-            console.log(orderId, productId, quantity)
-            // if (product){
-            //    let productId=product.id
-            const newOrderLine = OrderLine.create({ orderId, productId, quantity })
-            await OrderLine.save(newOrderLine)
-            // }
+            let product = productIds[i].id
+            console.log(product)
+            let quantity = productIds[i].quantity
+            console.log(order, product, quantity)
+            const newOrderLine = OrderLine.create({ order, product, quantity })
+            await newOrderLine.save()
+            console.log(newOrderLine)
         }
         res.json({ newOrder })
     } catch (error) {
@@ -59,13 +63,15 @@ router.get('/', async (req, res) => {
 })
 
 //Update order status
-router.post('/:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     try {
         const id = +req.params.id
-        const order = await Order.findOne({ where: { id: id }, relations: { orderlines: { product: true } } })
-        const { completed } = req.body;
-        const updatedOrder = await Order.update(order!.id, { completed })
-        res.json({ updatedOrder })
+        const order = await Order.findOne({ where: { id} })
+        // const { completed } = req.body;
+        order!.completed = true;
+        // const updatedOrder = await Order.update(order!.id, { order.completed })
+        await order?.save()
+        res.json({order})
     } catch (error) {
         res.status(500).json({ error })
     }
