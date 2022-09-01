@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column,Generated, CreateDateColumn, UpdateDateColumn, BaseEntity, ManyToOne, OneToMany, JoinColumn, ManyToMany, JoinTable } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, Generated, CreateDateColumn, UpdateDateColumn, BaseEntity, ManyToOne, OneToMany, JoinColumn, ManyToMany, JoinTable } from "typeorm"
 import { OrderLine } from "./orderLine";
 import { Product } from "./product";
 
@@ -17,13 +17,13 @@ export class Order extends BaseEntity {
     address: string;
 
     @Column()
-    city:string;
+    city: string;
 
     @Column()
     @Generated("uuid")
     orderNo: string;
 
-    @CreateDateColumn({type: "timestamptz"})
+    @CreateDateColumn({ type: "timestamptz" })
     createdAt: Date;
 
     @UpdateDateColumn({
@@ -32,10 +32,10 @@ export class Order extends BaseEntity {
     })
     updatedAt: Date;
 
-    @OneToMany(()=>OrderLine, orderline=>orderline.order)
+    @OneToMany(() => OrderLine, orderline => orderline.order)
     orderlines: OrderLine[];
 
-    @Column({default: false})
-    completed:boolean;
+    @Column({ default: false })
+    completed: boolean;
 
 }

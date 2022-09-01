@@ -11,13 +11,11 @@ interface productId {
     id: number,
     quantity: number
 }
-
-
 //Post a new order
 router.post('/', async (req, res) => {
     try {
         const { name, mobile, address, city, productIds } = req.body
-        const products = await Product.find({ where: { id: In(productIds.map((product: productId)=>product.id) || []) } })
+        const products = await Product.find({ where: { id: In(productIds.map((product: productId) => product.id) || []) } })
         console.log(products)
         const newOrder = Order.create({
             name, mobile, address, city
@@ -66,12 +64,10 @@ router.get('/', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     try {
         const id = +req.params.id
-        const order = await Order.findOne({ where: { id} })
-        // const { completed } = req.body;
+        const order = await Order.findOne({ where: { id } })
         order!.completed = true;
-        // const updatedOrder = await Order.update(order!.id, { order.completed })
         await order?.save()
-        res.json({order})
+        res.json({ order })
     } catch (error) {
         res.status(500).json({ error })
     }

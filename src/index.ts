@@ -22,12 +22,12 @@ app.use('/product', productRouter)
 app.use('/order', orderRouter)
 app.use('/category', (categoriesRouter))
 
-app.listen(process.env.port, async ()=>{
+app.listen(process.env.port, async () => {
     console.log(`listening on port ${process.env.port}`)
     try {
         await AppDataSource.initialize(),
-        console.log('DB connection established')
+            console.log('DB connection established')
     } catch (error) {
         throw new Error(`error occured ${error as Error}`)
     }
-} )
+})

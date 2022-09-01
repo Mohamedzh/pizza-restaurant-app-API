@@ -9,16 +9,18 @@ export class Category extends BaseEntity {
     @Column()
     name: string;
 
-    @CreateDateColumn({type: "timestamptz"})
+    @CreateDateColumn({ type: "timestamptz" })
     createdAt: Date;
 
     @UpdateDateColumn(
-        {type: "timestamptz",
-    onUpdate: "CURRENT_TIMESTAMPTZ"}
+        {
+            type: "timestamptz",
+            onUpdate: "CURRENT_TIMESTAMPTZ"
+        }
     )
     updatedAt: Date;
 
-    @OneToMany(()=>Product, product=>product.category)
+    @OneToMany(() => Product, product => product.category)
     products: Product[]
-    
+
 }

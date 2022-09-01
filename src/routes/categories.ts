@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
         })
         console.log(newCat)
         await Category.save(newCat)
-        res.json({newCat})
+        res.json({ newCat })
     } catch (error) {
         res.status(500).json({ error })
     }
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 //Get all categories
 router.get('/', async (req, res) => {
     try {
-        const categories = await Category.find({relations:{products:true}})
+        const categories = await Category.find({ relations: { products: true } })
         res.json({ categories })
     } catch (error) {
         res.status(500).json({ error })

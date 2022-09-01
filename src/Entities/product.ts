@@ -28,10 +28,6 @@ export class Product extends BaseEntity {
     @ManyToOne(() => Category, category => category.products, { nullable: false })
     category: Category;
 
-    // @ManyToMany(() => Order)
-    // @JoinTable()
-    // orders: Order[];
-
-    @ManyToOne(() => OrderLine, orderline=>orderline.product)
+    @ManyToOne(() => OrderLine, orderline => orderline.product)
     orderlines: OrderLine[];
 }
