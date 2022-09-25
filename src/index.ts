@@ -22,6 +22,11 @@ app.use('/product', productRouter)
 app.use('/order', orderRouter)
 app.use('/category', (categoriesRouter))
 
+
+app.get("/", (req, res) => {
+    res.send("Express on Vercel");
+  });
+
 app.listen(process.env.port, async () => {
     console.log(`listening on port ${process.env.port}`)
     try {
@@ -31,3 +36,5 @@ app.listen(process.env.port, async () => {
         throw new Error(`error occured ${error as Error}`)
     }
 })
+
+module.exports = app;
