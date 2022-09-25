@@ -8,6 +8,7 @@ import AppDataSource from './data-source';
 import productRouter from './routes/products'
 import orderRouter from './routes/orders'
 import categoriesRouter from './routes/categories'
+import test from '../api/test'
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use('/product', productRouter)
 // app.use('/user', userRouter)
 app.use('/order', orderRouter)
 app.use('/category', (categoriesRouter))
+app.use('/api/test', test)
 
 
 app.get("/", (req, res) => {

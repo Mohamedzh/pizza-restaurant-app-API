@@ -2,7 +2,6 @@ import { Router } from 'express'
 
 const router = Router()
 
-//Post a new category
 router.get('/', async (req, res) => {
     try {
         res.send("server working on vercel")
@@ -12,3 +11,4 @@ router.get('/', async (req, res) => {
 })
 
 export default router
+module.exports = router
