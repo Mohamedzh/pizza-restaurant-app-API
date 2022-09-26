@@ -1,14 +1,14 @@
-import { Router } from 'express'
+// import { Router } from 'express'
 
-const router = Router()
+// const router = Router()
 
-router.get('/', async (req, res) => {
-    try {
-        res.send("server working on vercel")
-    } catch (error) {
-        res.status(500).json({ error })
-    }
-})
+// router.get('/', async (req, res) => {
+//     try {
+//         res.send("server working on vercel")
+//     } catch (error) {
+//         res.status(500).json({ error })
+//     }
+// })
 
-export default router
-module.exports = router
+// export default router
+// module.exports = router
