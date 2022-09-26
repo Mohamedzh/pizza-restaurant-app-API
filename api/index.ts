@@ -4,11 +4,11 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import "reflect-metadata";
-import AppDataSource from './src/data-source';
-import productRouter from './src/routes/products'
-import orderRouter from './src/routes/orders'
-import categoriesRouter from './src/routes/categories'
-import test from './api/test'
+import AppDataSource from '../src/data-source';
+import productRouter from '../src/routes/products'
+import orderRouter from '../src/routes/orders'
+import categoriesRouter from '../src/routes/categories'
+import test from './test'
 
 const app = express();
 
