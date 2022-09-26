@@ -4,11 +4,11 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import "reflect-metadata";
-import AppDataSource from './data-source';
-import productRouter from './routes/products'
-import orderRouter from './routes/orders'
-import categoriesRouter from './routes/categories'
-import test from '../api/test'
+import AppDataSource from './src/data-source';
+import productRouter from './src/routes/products'
+import orderRouter from './src/routes/orders'
+import categoriesRouter from './src/routes/categories'
+import test from './api/test'
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use('/api/test', test)
 
 app.get("/", (req, res) => {
     res.send("Express on Vercel");
-  });
+});
 
 app.listen(process.env.port, async () => {
     console.log(`listening on port ${process.env.port}`)
