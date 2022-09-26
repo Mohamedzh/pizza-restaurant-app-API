@@ -23,7 +23,7 @@ app.use('/order', orderRouter)
 app.use('/category', (categoriesRouter))
 
 
-app.listen(process.env.port, async () => {
+app.listen(process.env.PORT || 5000, async () => {
     console.log(`listening on port ${process.env.port}`)
     try {
         await AppDataSource.initialize(),
