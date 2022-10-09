@@ -1,12 +1,9 @@
 {
   "name": "pizza-api",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "v18.x"
-  },
+  
   "scripts": {
     "start": "node src/index.ts",
     "dev": "nodemon src/index.ts"
