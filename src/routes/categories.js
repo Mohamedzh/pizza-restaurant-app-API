@@ -30,11 +30,16 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 //Get all categories
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // const categories = await Category.find({ relations: { products: true } })
-        res.json({ categories: "categories" });
+        const categories = yield category_1.Category.find({ relations: { products: true } });
+        if (categories.length > 0) {
+            res.json({ categories });
+        }
+        else {
+            res.send('no signal from db');
+        }
     }
     catch (error) {
-        res.status(500).json({ error });
+        res.status(500).json({ error: `error occured as ${error}` });
     }
 }));
 exports.default = router;

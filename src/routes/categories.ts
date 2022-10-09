@@ -21,11 +21,14 @@ router.post('/', async (req, res) => {
 //Get all categories
 router.get('/', async (req, res) => {
     try {
-        // const categories = await Category.find({ relations: { products: true } })
-
-        res.json({ categories:"categories" })
+        const categories = await Category.find({ relations: { products: true } })
+        if (categories.length > 0) {
+            res.json({ categories })
+        }else{
+            res.send('no signal from db')
+        }
     } catch (error) {
-        res.status(500).json({ error })
+        res.status(500).json({ error: `error occured as ${error}` })
     }
 
 })
