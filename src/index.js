@@ -56,6 +56,7 @@ app.use('/product', products_1.default);
 // app.use('/user', userRouter)
 app.use('/order', orders_1.default);
 app.use('/category', (categories_1.default));
+app.get('/', (req, res) => res.send('api working on home page'));
 app.listen(process.env.PORT || 5000, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log(`listening on port ${process.env.port}`);
     try {

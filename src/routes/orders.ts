@@ -57,7 +57,6 @@ router.get('/', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error })
     }
-
 })
 
 //Update order status
