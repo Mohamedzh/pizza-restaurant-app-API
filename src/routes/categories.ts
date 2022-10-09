@@ -21,8 +21,9 @@ router.post('/', async (req, res) => {
 //Get all categories
 router.get('/', async (req, res) => {
     try {
-        const categories = await Category.find({ relations: { products: true } })
-        res.json({ categories })
+        // const categories = await Category.find({ relations: { products: true } })
+
+        res.json({ categories:"categories" })
     } catch (error) {
         res.status(500).json({ error })
     }
