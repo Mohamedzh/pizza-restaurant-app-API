@@ -31,12 +31,7 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const categories = yield category_1.Category.find({ relations: { products: true } });
-        if (categories.length > 0) {
-            res.json({ categories });
-        }
-        else {
-            res.send('no signal from db');
-        }
+        res.json({ categories });
     }
     catch (error) {
         res.status(500).json({ error: `error occured as ${error}` });

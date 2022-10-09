@@ -22,7 +22,7 @@ app.use('/product', productRouter)
 app.use('/order', orderRouter)
 app.use('/category', (categoriesRouter))
 
-app.get('/', (req, res) => res.send('api working on home page'))
+app.get('/', (req, res) => res.send('api for pizza restaurant app'))
 
 app.listen(process.env.PORT || 5000, async () => {
     console.log(`listening on port ${process.env.port}`)
@@ -34,5 +34,3 @@ app.listen(process.env.PORT || 5000, async () => {
     }
 }
 )
-
-// module.exports = app;

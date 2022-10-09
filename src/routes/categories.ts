@@ -22,14 +22,9 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const categories = await Category.find({ relations: { products: true } })
-        if (categories.length > 0) {
-            res.json({ categories })
-        }else{
-            res.send('no signal from db')
-        }
+        res.json({ categories })
     } catch (error) {
         res.status(500).json({ error: `error occured as ${error}` })
     }
-
 })
 export default router
