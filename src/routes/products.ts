@@ -72,6 +72,7 @@ router.delete('/:id', async (req, res) => {
         const currentId = +(req.params.id)
         const item = await Product.findOne({ where: { id: currentId } })
         await Product.remove(item!)
+        res.status(200).send(`product removed successfully`)
     } catch (error) {
         res.status(500).json({ error })
     }

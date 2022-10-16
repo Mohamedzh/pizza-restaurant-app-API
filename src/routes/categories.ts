@@ -54,7 +54,7 @@ router.delete('/', async (req, res) => {
         })
         if (newCat) {
             await Category.remove(newCat)
-            res.json({ msg: `category ${name} deleted` })
+            res.json({ msg: `category deleted` })
         }
         else {
             res.status(404).send('no category exists with the given name')
