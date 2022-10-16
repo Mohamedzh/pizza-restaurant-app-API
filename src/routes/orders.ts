@@ -11,16 +11,22 @@ interface productId {
     id: number,
     quantity: number
 }
-//Post a new order
 router.post('/', async (req, res) => {
     try {
+        /*
+           #swagger.tags = ['Orders']
+           #swagger.summary = 'Post a new order'
+           #swagger.parameters['name', 'mobile', 'address', 'city', 'productIds'] = {
+           in: 'body',
+           description: 'The order details',
+           }
+        */
         const { name, mobile, address, city, productIds } = req.body
         const products = await Product.find({ where: { id: In(productIds.map((product: productId) => product.id) || []) } })
         console.log(products)
         const newOrder = Order.create({
             name, mobile, address, city
         })
-        // console.log(newOrder)
         await newOrder.save()
         const order = newOrder
         for (let i = 0; i < products.length; i++) {
@@ -39,9 +45,16 @@ router.post('/', async (req, res) => {
 
 })
 
-//Get an order
 router.get('/:id', async (req, res) => {
     try {
+        /* 
+           #swagger.tags = ['Orders']
+           #swagger.summary = 'Get a specific order by id'
+           #swagger.parameters['id'] = { 
+            in: 'path',
+            description: 'The id of the order to get' 
+           }
+        */
         const id = +req.params.id
         const order = await Order.findOne({ where: { id: id }, relations: { orderlines: { product: true } } })
         res.json({ order })
@@ -49,9 +62,11 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ error })
     }
 })
-//Get all orders
+
 router.get('/', async (req, res) => {
     try {
+        // #swagger.tags = ['Orders']
+        // #swagger.summary = 'Get all orders'
         const orders = await Order.find({ relations: { orderlines: { product: true } } })
         res.status(200).json({ orders })
     } catch (error) {
@@ -59,9 +74,16 @@ router.get('/', async (req, res) => {
     }
 })
 
-//Update order status
 router.patch('/:id', async (req, res) => {
     try {
+        /* 
+           #swagger.tags = ['Orders']
+           #swagger.summary = 'Update order status'
+           #swagger.parameters['id'] = { 
+            in: 'path',
+            description: 'The id of the order to update' 
+           }
+        */
         const id = +req.params.id
         const order = await Order.findOne({ where: { id } })
         order!.completed = true;

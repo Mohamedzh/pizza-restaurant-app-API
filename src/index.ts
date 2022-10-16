@@ -8,6 +8,9 @@ import AppDataSource from './data-source';
 import productRouter from './routes/products'
 import orderRouter from './routes/orders'
 import categoriesRouter from './routes/categories'
+import swaggerUi from 'swagger-ui-express'
+const swaggerFile = require('../swagger-output.json')
+
 
 const app = express();
 
@@ -22,7 +25,7 @@ app.use('/product', productRouter)
 app.use('/order', orderRouter)
 app.use('/category', (categoriesRouter))
 
-app.get('/', (req, res) => res.send('api for pizza restaurant app'))
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.listen(process.env.PORT || 5000, async () => {
     console.log(`listening on port ${process.env.port}`)
