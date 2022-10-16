@@ -5,10 +5,9 @@
     "description": "API for the pizza restaurant app",
     "version": "1.0.0"
   },
-  "host": "localhost:5000",
+  "host": "pizza-restaurant-app-api-production.up.railway.app",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
