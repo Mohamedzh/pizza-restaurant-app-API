@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { Product } from '../Entities/product'
-// import AppDataSource from '../data-source'
+import AppDataSource from '../data-source'
 
 const router = Router()
 
@@ -9,9 +9,9 @@ router.get('/', async (req, res) => {
        #swagger.tags = ['Products']
        #swagger.summary = 'Get all menu products'
     */
-    // const productRepository = AppDataSource.getRepository(Product);
-    // const products = await productRepository.find({ relations: { category: true } });
-    const products = await Product.find({ relations: { category: true } })
+    const productRepository = AppDataSource.getRepository(Product);
+    const products = await productRepository.find({ relations: { category: true } });
+    // const products = await Product.find({ relations: { category: true } })
     res.json({ products })
 })
 
