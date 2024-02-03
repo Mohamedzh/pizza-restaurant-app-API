@@ -28,7 +28,7 @@ app.use('/category', (categoriesRouter))
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.listen(process.env.PORT || 5000, async () => {
-    console.log(`listening on port ${process.env.port}`)
+    console.log(`listening on port ${process.env.PORT || 5000}`)
     try {
         await AppDataSource.initialize(),
             console.log('DB connection established')
