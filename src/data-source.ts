@@ -21,7 +21,7 @@ const AppDataSource = new DataSource({
   subscribers: [],
 });
 
-// Product.useDataSource(AppDataSource);
+Product.useDataSource(AppDataSource);
 // Order.useDataSource(AppDataSource);
 // OrderLine.useDataSource(AppDataSource);
 // Category.useDataSource(AppDataSource);
